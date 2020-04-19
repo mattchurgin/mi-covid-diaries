@@ -5,12 +5,19 @@ export GOOGLE_APPLICATION_CREDENTIALS="/Users/betsysneller/Desktop/mi-covid-diar
 echo "Begin program: "
 echo "==============="
 input="$1"
+
+
+
+file_created=$(date -r $1)
+file_created=( $file_created )
+full_date_str=${file_created[0]}${file_created[1]}${file_created[2]}
+
 pathtofile=`dirname "$input"`
 filename=`basename "$input"`
 fname="${filename%.*}"
 
 #echo "${fname}"
-fname="${fname// /_}.wav"
+fname="${fname// /_}${full_date_str}.wav"
 
 echo "Coverting file to .wav"
 echo "==============="
