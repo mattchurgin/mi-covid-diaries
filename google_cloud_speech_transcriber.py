@@ -5,7 +5,7 @@ import io
 import sys
 import os
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/mattchurgin/Desktop/mi-covid-diaries/mi covid diaries-31ac6d932f0d.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/betsysneller/Desktop/mi-covid-diaries/mi covid diaries-31ac6d932f0d.json"
 def sample_long_running_recognize(storage_uri):
     """
     Transcribe a long audio file using asynchronous speech recognition
@@ -72,7 +72,10 @@ audio_file = sys.argv[1]
 print(f'Transcribing file: {audio_file}:')
 textout, textout_speaker, textout_speaker_label = sample_long_running_recognize(audio_file)
 
-with open("transcript.txt", "w") as text_file:
+outfilename = os.path.split(audio_file)[-1]
+outfilename = outfilename[:-4] + '.txt'
+
+with open(outfilename, "w") as text_file:
     text_file.write(" ".join(textout))
 #with open("transcript_speaker.txt", "w") as text_file:
 #    text_file.write(" ".join(textout_speaker))
