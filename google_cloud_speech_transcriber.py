@@ -73,11 +73,14 @@ print(f'Transcribing file: {audio_file}:')
 textout, textout_speaker, textout_speaker_label = sample_long_running_recognize(audio_file)
 
 outfilename = os.path.split(audio_file)[-1]
-outfilename = outfilename[:-4] + '.txt'
+outpath = sys.argv[2]
+outpathname = os.path.join(outpath, outfilename[:-4] + '.txt')
 
-with open(outfilename, "w") as text_file:
+
+with open(outpathname, "w") as text_file:
     text_file.write(" ".join(textout))
 #with open("transcript_speaker.txt", "w") as text_file:
 #    text_file.write(" ".join(textout_speaker))
 #with open("transcript_speaker_label.txt", "w") as text_file:
 #    text_file.write(" ".join(str(textout_speaker_label)))
+
