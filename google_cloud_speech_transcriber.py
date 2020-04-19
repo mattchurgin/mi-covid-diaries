@@ -74,7 +74,7 @@ textout, textout_speaker, textout_speaker_label = sample_long_running_recognize(
 
 with open("transcript.txt", "w") as text_file:
     text_file.write(" ".join(textout))
-with open("transcript_speaker.txt", "w") as text_file:
-    text_file.write(" ".join(textout_speaker))
-with open("transcript_speaker_label.txt", "w") as text_file:
-    text_file.write(" ".join(str(textout_speaker_label)))
+#with open("transcript_speaker.txt", "w") as text_file:
+#    text_file.write(" ".join(textout_speaker))
+#with open("transcript_speaker_label.txt", "w") as text_file:
+#    text_file.write(" ".join(str(textout_speaker_label)))
