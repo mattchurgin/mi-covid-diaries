@@ -6,19 +6,21 @@ echo "Begin program: "
 echo "==============="
 input="$1"
 
+file_created=$(date -r "$input")
 
-
-file_created=$(date -r $1)
 file_created=( $file_created )
-full_date_str=${file_created[0]}${file_created[1]}${file_created[2]}
+full_date_str="${file_created[1]}-${file_created[2]}-${file_created[5]}"
+
+echo "${full_date_str}"
 
 pathtofile=`dirname "$input"`
 filename=`basename "$input"`
 fname="${filename%.*}"
 
 #echo "${fname}"
-fname="${fname// /_}${full_date_str}.wav"
+fname="${fname// /_}_${full_date_str}.wav"
 
+echo ${fname}
 echo "Coverting file to .wav"
 echo "==============="
 # convert file to .wav
