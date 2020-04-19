@@ -30,13 +30,13 @@ a=( $line )
 
 bitrate=${a[${#a[@]}-2]}
 
-echo $bitrate
+echo "bit rate:  $bitrate"
 
 echo "Transcribing file"
 echo "==============="
 python3 google_cloud_speech_transcriber.py gs://mi-covid_diaries-files/"${fname}" $bitrate
 
-
+# remove file from google cloud bucket
 gsutil rm gs://mi-covid_diaries-files/${fname}
 
 echo "Transcription complete and file removed from google cloud bucket"
