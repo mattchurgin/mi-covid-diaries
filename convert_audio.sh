@@ -26,4 +26,7 @@ echo $bitrate
 echo "Transcribing file"
 python3 google_cloud_speech_transcriber.py gs://mi-covid_diaries-files/"${fname}" $bitrate
 
-echo "Transcription complete"
+
+gsutil rm gs://mi-covid_diaries-files/${fname}
+
+echo "Transcription complete and file removed from google cloud bucket"
