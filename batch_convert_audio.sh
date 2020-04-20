@@ -3,14 +3,20 @@
 export GOOGLE_APPLICATION_CREDENTIALS="/Users/betsysneller/Desktop/mi-covid-diaries/mi covid diaries-31ac6d932f0d.json"
 
 
-source_dir="/Users/betsysneller/"
-target_dir="/Users/betsneller/"
+source_dir="/Users/betsysneller/Box Sync/Grants/MICOVIDdiaries/AudioDiaries"
+target_dir="/Users/betsysneller/Desktop/mi-covid-diaries/transcripts"
+
+files=$(ls "$source_dir")
+
 echo "Begin program: "
 echo "==============="
 
-for f in ${source_dir}
+#for f in "${source_dir}"
+for f in "$(ls "$source_dir")"
 do
-    input="$f"
+    echo "${f}"
+
+    input=""$source_dir"/"$f""
 
     file_created=$(date -r "$input")
 
@@ -50,14 +56,14 @@ do
 
     echo "Transcribing file"
     echo "==============="
-    python3 google_cloud_speech_transcriber.py gs://mi-covid_diaries-files/"${fname}" $bitrate ${target_dir} 
+    python3 google_cloud_speech_transcriber.py gs://mi-covid_diaries-files/"${fname}" $bitrate "${target_dir}" 
 
     # remove file from google cloud bucket
     gsutil rm gs://mi-covid_diaries-files/${fname}
 
     echo "Transcription complete and file removed from google cloud bucket"
     echo "==============="
-    mv ${f} ${target_dir}
+    mv "${f}" "${target_dir}" 
     
     echo "Done processing file ${f}!"
 

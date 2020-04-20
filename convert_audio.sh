@@ -2,6 +2,9 @@
 
 export GOOGLE_APPLICATION_CREDENTIALS="/Users/betsysneller/Desktop/mi-covid-diaries/mi covid diaries-31ac6d932f0d.json"
 
+
+target_dir="/Users/betsysneller/Desktop/mi-covid-diaries/transcripts"
+
 echo "Begin program: "
 echo "==============="
 input="$1"
@@ -15,16 +18,17 @@ echo "${full_date_str}"
 
 pathtofile=`dirname "$input"`
 filename=`basename "$input"`
+
 fname="${filename%.*}"
 
-#echo "${fname}"
-fname="${fname// /_}_${full_date_str}.wav"
+fname_new="${fname// /_}"_${full_date_str}
 
-echo ${fname}
+fname="${fname_new}.wav"
+
 echo "Coverting file to .wav"
 echo "==============="
-# convert file to .wav
 ffmpeg -i "${input}" "${fname}"
+
 
 echo "Uploading to google cloud bucket"
 echo "==============="
@@ -43,11 +47,16 @@ echo "bit rate:  $bitrate"
 
 echo "Transcribing file"
 echo "==============="
-python3 google_cloud_speech_transcriber.py gs://mi-covid_diaries-files/"${fname}" $bitrate
+python3 google_cloud_speech_transcriber.py gs://mi-covid_diaries-files/"${fname}" $bitrate $target_dir 
 
 # remove file from google cloud bucket
 gsutil rm gs://mi-covid_diaries-files/${fname}
 
 echo "Transcription complete and file removed from google cloud bucket"
+
+mv "$input" $target_dir
+mv "${fname}" $target_dir
+
+echo "File moved from source directory to $target_dir"
 echo "==============="
 echo "Done!"

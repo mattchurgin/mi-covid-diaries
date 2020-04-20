@@ -73,7 +73,7 @@ print(f'Transcribing file: {audio_file}:')
 textout, textout_speaker, textout_speaker_label = sample_long_running_recognize(audio_file)
 
 outfilename = os.path.split(audio_file)[-1]
-outpath = sys.argv[2]
+outpath = sys.argv[3]
 outpathname = os.path.join(outpath, outfilename[:-4] + '.txt')
 
 
