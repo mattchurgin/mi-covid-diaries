@@ -89,5 +89,30 @@ textfinal = ".\n".join(textsplit)
 
 with open(outpathname, "w") as text_file:
     text_file.write(textfinal)
-with open('word_tmstmps.pkl', 'wb') as f:
-    pickle.dump(timestamps, f)
+#with open('word_tmstmps.pkl', 'wb') as f:
+#    pickle.dump(timestamps, f)
+
+tmstmp_filename = os.path.join(outpath, outfilename[:-4] + 'ts.txt')
+with open(tmstmp_filename, 'w') as f:
+    f.write('Sentence Start_time_in_seconds End_time_in_seconds\n')
+
+wordlist = list()
+print(len(wordlist))
+for tup in timestamps:
+    if len(wordlist) == 0:
+        sentencestart = tup[1] + tup[2] * 10 ** -9
+    string = tup[0]
+    start = tup[1] + tup[2] * 10 ** -9
+    end = tup[3] + tup[4] * 10 ** -9
+#    print(f'word: {string}, starttime: {start}, endtime: {end}')
+    if string.find(".") > 0:
+#        print("break \n")
+        sentence = ' '.join(wordlist)
+        sentenceend = tup[3] + tup[4] * 10 ** -9
+        outline = f'{sentence} {sentencestart} {sentenceend}'
+        with open(tmstmp_filename, 'a') as f:
+            f.write(outline + '\n')
+
+        wordlist = list()
+    else:
+        wordlist.append(string)
