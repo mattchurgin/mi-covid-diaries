@@ -46,7 +46,7 @@ def sample_long_running_recognize(storage_uri):
         "sample_rate_hertz": sample_rate_hertz,
         "encoding": encoding,
         "enable_automatic_punctuation": True,
-        "enable_speaker_diarization": True,
+        #"enable_speaker_diarization": True,
         #"diarization_speaker_count": diarization_speaker_count,
         "enable_word_time_offsets": True
     }
