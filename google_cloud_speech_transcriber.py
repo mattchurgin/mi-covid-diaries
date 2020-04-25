@@ -80,7 +80,7 @@ outpathname = os.path.join(outpath, outfilename[:-4] + '.txt')
 
 textlist = " ".join(textout)
 textsplit = textlist.split(".")
-textfinal = "\n".join(textsplit)
+textfinal = ".\n".join(textsplit)
 
 with open(outpathname, "w") as text_file:
     text_file.write(textfinal)
