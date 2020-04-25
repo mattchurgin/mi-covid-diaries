@@ -1,18 +1,20 @@
 #!/bin/bash
+# command line arguments 
+# 1: file to translate
 
 export GOOGLE_APPLICATION_CREDENTIALS="/Users/betsysneller/Desktop/mi-covid-diaries/mi covid diaries-31ac6d932f0d.json"
 
+#export GOOGLE_APPLICATION_CREDENTIALS="/Users/mattchurgin/Desktop/mi-covid-diaries/mi covid diaries-31ac6d932f0d.json"
 
 target_dir="/Users/betsysneller/Desktop/mi-covid-diaries/transcripts"
+#target_dir="/Users/mattchurgin/Desktop/mi-covid-diaries"
 
 echo "Begin program: "
 echo "==============="
 input="$1"
 
-file_created=$(date -r "$input")
-
-file_created=( $file_created )
-full_date_str="${file_created[1]}-${file_created[2]}-${file_created[5]}"
+file_created=$(date -r "$input" +%F)
+full_date_str="$file_created"
 
 echo "${full_date_str}"
 
