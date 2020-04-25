@@ -78,9 +78,12 @@ outfilename = os.path.split(audio_file)[-1]
 outpath = sys.argv[3]
 outpathname = os.path.join(outpath, outfilename[:-4] + '.txt')
 
+textlist = " ".join(textout)
+textsplit = textlist.split(".")
+textfinal = "\n".join(textsplit)
 
 with open(outpathname, "w") as text_file:
-    text_file.write("\n".join(textout))
+    text_file.write(textfinal)
 #with open("transcript_speaker.txt", "w") as text_file:
 #    text_file.write(" ".join(textout_speaker))
 #with open("transcript_speaker_label.txt", "w") as text_file:
