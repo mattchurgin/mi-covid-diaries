@@ -94,7 +94,7 @@ with open(outpathname, "w") as text_file:
 
 tmstmp_filename = os.path.join(outpath, outfilename[:-4] + 'ts.txt')
 with open(tmstmp_filename, 'w') as f:
-    f.write('Sentence Start_time_in_seconds End_time_in_seconds\n')
+    f.write('Speaker\tHeader2\tChunk_Start\tChunk_End\tChunk\n')
 
 wordlist = list()
 print(len(wordlist))
@@ -109,7 +109,7 @@ for tup in timestamps:
 #        print("break \n")
         sentence = ' '.join(wordlist)
         sentenceend = tup[3] + tup[4] * 10 ** -9
-        outline = f'{sentence} {sentencestart} {sentenceend}'
+        outline = f'Speaker\tNA\t{sentencestart}\t{sentenceend}\t{sentence}'
         with open(tmstmp_filename, 'a') as f:
             f.write(outline + '\n')
 
